@@ -111,7 +111,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
  #INSIDE OF THE CONTAINER RIGTH#
   	- apt-get install python-pip
 	
-	- apt-get install python-dev libxml2-dev libxslt-1dev zlib1g-dev
+	- apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev
 	
 	- apt-get install git-all
 
