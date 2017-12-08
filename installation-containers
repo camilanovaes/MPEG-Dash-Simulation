@@ -1,0 +1,61 @@
+#### LXC ABOUT #####
+LXC is a userspace interface for the Linux kernel containment features. Through a powerful API and simple tools, it lets Linux users easily create and manage system or application containers.
+
+
+#### Instalação dos containers ####
+https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
+
+- Install:
+	sudo apt install libyaml-cpp-dev lxc lxc-dev cmake gcc
+- Create VMs: 
+	cd ns-allinone-3.26/ns-3.26
+	sudo lxc-create -n left -t ubuntu -f src/tap-bridge/examples/lxc-left.conf
+	sudo lxc-create -n right -t ubuntu -f src/tap-bridge/example/lxc-right.conf
+
+- Add bridge to transmit packets: 
+	sudo brctl addbr br-left
+	sudo brctl addbr br-right
+
+- Create tap devices that will be used to get packet from the bridges into its process:
+	sudo apt install uml-utilities
+	sudo tunctl -t tap-left
+	sudo tunctl -t tap-right
+
+- Set IP addresses of the tap devices and turn them on:
+	sudo ifconfig tap-left 0.0.0.0 promisc up
+	sudo ifconfig tap-right 0.0.0.0 promisc up
+
+- Add the tap devices to bridges and bring up:
+	sudo brctl addif br-left tap-left
+	sudo ifconfig br-left up 
+	sudo brctl addif br-right tap-right
+	sudo ifconfig br-right up
+
+- Show if containers was created:
+	sudo brctl show
+	sudo lxc-ls -f	
+
+- LXC requires the cgroups filesystem to be mount. So:
+	sudo mount -t cgroup cgroup /sys/fs/cgroup 
+  You also could add a line in /etc/fstab to do this.
+
+- A cgroup related erro is likely to appear, so install this pakege:
+	sudo apt install cgroup-lite
+
+- Start the container:
+	sudo lxc-start -n left
+
+ #INSIDE OF LEFT CONTAINER#
+ - Usuário: ubuntu
+   Senha: ubuntu
+ - Install:
+	sudo apt get install software-properties-common
+	sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+	sudo apt  update
+	sudo apt install gcc-4.9
+	sudo apt install g++-4.9
+	sudo apt install libpcre3 libpcre3-dev
+	sudo apt install libssl-dev
+	sudo apt install checkinstall
+ 
+
