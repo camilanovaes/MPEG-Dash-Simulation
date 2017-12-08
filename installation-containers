@@ -39,7 +39,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	sudo mount -t cgroup cgroup /sys/fs/cgroup 
   You also could add a line in /etc/fstab to do this.
 
-- A cgroup related erro is likely to appear, so install this pakege:
+- A cgroup related erro is likely to appear, so install this package:
 	sudo apt install cgroup-lite
 
 - Start the container:
