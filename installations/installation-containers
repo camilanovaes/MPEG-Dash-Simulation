@@ -58,7 +58,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	sudo lxc-attach -n left
 	sudo lxc-attach -n right
 
- #INSIDE OF THE CONTAINERS#
+ #INSIDE OF THE CONTAINER LEFT#
  - Usuário: ubuntu
    Senha: ubuntu
  - Install:
@@ -70,5 +70,16 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	sudo apt install libpcre3 libpcre3-dev
 	sudo apt install libssl-dev
 	sudo apt install checkinstall
- 
+	
+  #INSIDE OF THE CONTAINER RIGTH#
+  	- apt-get install python-pip
+	
+	- apt-get install python-dev libxml2-dev libxslt-1dev zlib1g-dev
+	
+	- apt-get install git-all
 
+	- git clone https://github.com/broadbent/scootplayer.git
+
+	- cd scootplayer/
+
+ 	- pip install -r requirements.txt
