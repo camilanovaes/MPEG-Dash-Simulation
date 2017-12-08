@@ -44,20 +44,27 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 
 -Access the Internet in a container
 	In directory "/var/lib/lxc/left" in file "config" need to change lxc.network.link = brleft to lxc.network.link = lxcbr0
+
+-Configuring container right's "config" file... It will have the "Network Configuration" empty
+	In directory "/var/lib/lxc/riht" in file "config" need to copy the same variables and assigns of container left,
+	but the variable "lxc.network.ipv4" needs to have different ipv4 compare to the container left. Example: 
+	lxc.network.ipv4 = 10.0.0.2/24 
 	
 - Start the container:
 	sudo lxc-start -n left
+	sudo lxc-start -n right
 	
 - Acess the container
 	sudo lxc-attach -n left
+	sudo lxc-attach -n right
 
- #INSIDE OF LEFT CONTAINER#
+ #INSIDE OF THE CONTAINERS#
  - Usuário: ubuntu
    Senha: ubuntu
  - Install:
-	sudo apt get install software-properties-common
+	sudo apt-get install software-properties-common
 	sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-	sudo apt  update
+	sudo apt update
 	sudo apt install gcc-4.9
 	sudo apt install g++-4.9
 	sudo apt install libpcre3 libpcre3-dev
