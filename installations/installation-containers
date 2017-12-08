@@ -42,6 +42,9 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 - A cgroup related erro is likely to appear, so install this package:
 	sudo apt install cgroup-lite
 
+-Access the Internet in a container
+	In directory "/var/lib/lxc/left" in file "config" need to change lxc.network.link = brleft to lxc.network.link = lxcbr0
+	
 - Start the container:
 	sudo lxc-start -n left
 	
