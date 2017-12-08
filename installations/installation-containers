@@ -44,6 +44,9 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 
 - Start the container:
 	sudo lxc-start -n left
+	
+- Acess the container
+	sudo lxc-attach -n left
 
  #INSIDE OF LEFT CONTAINER#
  - Usuário: ubuntu
