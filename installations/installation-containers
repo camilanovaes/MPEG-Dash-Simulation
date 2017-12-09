@@ -71,7 +71,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	sudo apt install libssl-dev
 	sudo apt install checkinstall
 	
- #INSIDE OF THE LEFT CONTAINERS/SERVER#	
+ #INSIDE OF THE LEFT CONTAINER/SERVER#	
 - HTTP Server
 - Get wget:
 	sudo apt-get install wget
@@ -86,7 +86,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	cd nginx-1.9.12
 	./configure
 	make
-	sudo checkintall
+	sudo checkinstall
 
 - Requirements for the installation of the Dash.js (Multimedia Player)
 - Install cURL
@@ -101,14 +101,13 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	npm install grunt-template-jasmine-istanbul --save-dev
 
 - Install also
-	npm install grunt-contrib-connect grunt-contrib-watch grunt-contrib-
-	jshint grunt-contrib-uglify
+	npm install grunt-contrib-connect grunt-contrib-watch grunt-contrib-jshint grunt-contrib-uglify
 
 - And now download and unzip Dash player:
 	wget https://github.com/Dash-Industry-Forum/dash.js/archive/development.zip
 	unzip development.zip
 
- #INSIDE OF THE CONTAINER RIGTH#
+ #INSIDE OF THE RIGHT CONTAINER/CLIENT#
   	- apt-get install python-pip
 	
 	- apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev
