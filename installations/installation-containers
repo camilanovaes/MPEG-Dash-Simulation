@@ -46,7 +46,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	In directory "/var/lib/lxc/left" in file "config" need to change lxc.network.link = brleft to lxc.network.link = lxcbr0
 
 -Configuring container right's "config" file... It will have the "Network Configuration" empty
-	In directory "/var/lib/lxc/riht" in file "config" need to copy the same variables and assigns of container left,
+	In directory "/var/lib/lxc/right" in file "config" need to copy the same variables and assigns of container left,
 	but the variable "lxc.network.ipv4" needs to have different ipv4 compare to the container left. Example: 
 	lxc.network.ipv4 = 10.0.0.2/24 
 	
@@ -88,7 +88,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	make
 	sudo checkintall
 
-- Requirements fot the installation of the Dash.js (Multimedia Player)
+- Requirements for the installation of the Dash.js (Multimedia Player)
 - Install cURL
 	sudo apt-get install curl
 
