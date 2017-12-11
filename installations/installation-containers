@@ -105,7 +105,11 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 
 - And now download and unzip Dash player:
 	wget https://github.com/Dash-Industry-Forum/dash.js/archive/development.zip
+	apt-get install unzip
 	unzip development.zip
+	
+- Install Net Tools
+	apt-get install net-tools
 
  #INSIDE OF THE RIGHT CONTAINER/CLIENT#
   	- apt-get install python-pip
