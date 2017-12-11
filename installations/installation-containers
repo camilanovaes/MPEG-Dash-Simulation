@@ -123,3 +123,5 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	- cd scootplayer/
 
  	- pip install -r requirements.txt
+	
+	-apt-get install net-tools
