@@ -43,11 +43,11 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	sudo apt install cgroup-lite
 
 -Access the Internet in a container
-	In directory "/var/lib/lxc/left" in file "config" need to change lxc.network.link = brleft to lxc.network.link = lxcbr0
+	In directory "/var/lib/lxc/left" in file "config" need to change lxc.network.link = br-left to lxc.network.link = lxcbr0
 
--Configuring container right's "config" file... It will have the "Network Configuration" empty
+-Configuring container right's "config" file... It will has the "Network Configuration" field empty
 	In directory "/var/lib/lxc/right" in file "config" need to copy the same variables and assigns of container left,
-	but the variable "lxc.network.ipv4" needs to have different ipv4 compare to the container left. Example: 
+	but the variable "lxc.network.ipv4" will has different ipv4 compare to container left. Example: 
 	lxc.network.ipv4 = 10.0.0.2/24 
 	
 - Start the container:
@@ -105,7 +105,11 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 
 - And now download and unzip Dash player:
 	wget https://github.com/Dash-Industry-Forum/dash.js/archive/development.zip
+	apt-get install unzip
 	unzip development.zip
+	
+- Install Net Tools
+	apt-get install net-tools
 
  #INSIDE OF THE RIGHT CONTAINER/CLIENT#
   	- apt-get install python-pip
@@ -119,3 +123,5 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 	- cd scootplayer/
 
  	- pip install -r requirements.txt
+	
+	-apt-get install net-tools
