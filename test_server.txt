@@ -1,0 +1,46 @@
+Após a instalação do servidor Ngnix, deve-se modificar seu arquivo de configuração da seguinte forma:
+
+No diretório "/usr/local/nginx/conf", utilize o editor de texto para modificar o arquivo "nginx.conf".Use o comando "vi nginx.conf". Após a abertura do arquivo, copie o formato de configuração abaixo:
+
+/-------------------------------------------------------------------------------------------------------------------------------------------/
+
+worker_processes  auto;
+
+error_log logs/error.log debug;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  10.0.0.1;
+
+        location / {
+            root   /home/ubuntu/www;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+    }
+}
+
+/-----------------------------------------------------------------------------------------------------------------------------------------------/
+
+Agora copie o arquivo "nginx.conf" para o caminho "/etc/nginx/sites-enabled" e renomeie o arquivo para "10.0.0.1" utilizando a seguinte estrutura:
+
+root@left:/usr/local/nginx/conf# cp nginx.conf /etc/nginx/sites-enabled/10.0.0.1
+
+
+
+
