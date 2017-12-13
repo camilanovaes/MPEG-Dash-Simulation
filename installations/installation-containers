@@ -84,7 +84,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 
 - Install
 	cd nginx-1.9.12
-	./configure
+	./configure --with-cc-opt="-Wno-error"
 	make
 	sudo checkinstall
 
