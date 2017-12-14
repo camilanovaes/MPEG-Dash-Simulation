@@ -38,7 +38,8 @@ http {
 
 /------------------------------------------------------------------------------------------------------------------------------/
 
-Agora copie o conteúdo do arquivo "server.txt" do github para o arquivo "/etc/nginx/sites-enabled/10.0.0.1" que você irá criar com o comando "vi 10.0.0.1" na localização exposta anteriormente.
+Agora copie o conteúdo do arquivo "server.txt" do github para o arquivo "/etc/nginx/sites-enabled/10.0.0.1" que você irá criar
+com o comando "vi 10.0.0.1" na localização exposta anteriormente.
 
 Assim, será necessário iniciar o servidor a partir do comando: "service nginx start". 
 Faça a verificação do estado do servidor com o seguinte comando: "service nginx status"
