@@ -1,6 +1,7 @@
 Após a instalação do servidor Ngnix, deve-se modificar seu arquivo de configuração da seguinte forma:
 
-No diretório "/usr/local/nginx/conf", utilize o editor de texto para modificar o arquivo "nginx.conf".Use o comando "vi nginx.conf". Após a abertura do arquivo, copie o formato de configuração abaixo:
+No diretório "/usr/local/nginx/conf", utilize o editor de texto para modificar o arquivo "nginx.conf".Use o comando "vi nginx.conf".
+Após a abertura do arquivo, copie o formato de configuração abaixo:
 
 /-------------------------------------------------------------------------------------------------------------------------------------------/
 
