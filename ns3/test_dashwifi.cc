@@ -167,7 +167,7 @@ main (int argc, char *argv[])
   //
   // Run the simulation for ten minutes to give the user time to play around
   //
-  Simulator::Stop (Seconds (600.));
+  Simulator::Stop (Seconds (900.));
   Simulator::Run ();
   Simulator::Destroy ();
 }
