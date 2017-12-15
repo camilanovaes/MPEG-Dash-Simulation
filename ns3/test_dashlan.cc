@@ -120,6 +120,11 @@ main (int argc, char *argv[])
   //
   tapBridge.SetAttribute ("DeviceName", StringValue ("tap-right"));
   tapBridge.Install (nodes.Get (1), devices.Get (1));
+  
+  //Analise do trafego na rede 
+  AsciiTraceHelper ascii;
+  csma.EnableAsciiAll (ascii.CreateFileStream ("csma-dash.tr"));
+  csma.EnablePcapAll ("csma-dash");
 
   //
   // Run the simulation for ten minutes to give the user time to play around
