@@ -160,9 +160,8 @@ main (int argc, char *argv[])
 
   //Analise do trafego na rede 
   AsciiTraceHelper ascii;
-  wifi.EnableAsciiAll (ascii.CreateFileStream ("wifi-dash.tr"));
-  wifi.EnablePcapAll ("wifi-dash");
-
+  wifiPhy.EnableAsciiAll (ascii.CreateFileStream ("wifi-dash.tr"));
+  wifiPhy.EnablePcapAll ("wifi-dash");
   
   //
   // Run the simulation for ten minutes to give the user time to play around
