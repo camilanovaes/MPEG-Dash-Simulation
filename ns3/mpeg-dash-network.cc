@@ -129,10 +129,10 @@ int main (int argc, char *argv[]) {
    //===================================
 
    //=== APLICATION FOR CSMA NODES =====
-   UdpEchoServerHelper echoServer (9);   //creating the echo server on port 9
-   ApplicationContainer serverApps = echoServer.Install (virtualNodes.Get(0));  //install server application on the node 1
-   serverApps.Start (Seconds (1.0));
-   serverApps.Stop (Seconds (600.0));
+   //UdpEchoServerHelper echoServer (9);   //creating the echo server on port 9
+   //ApplicationContainer serverApps = echoServer.Install (virtualNodes.Get(0));  //install server application on the node 1
+   //serverApps.Start (Seconds (1.0));
+   //serverApps.Stop (Seconds (600.0));
 
    //We are going to create echo client applications, which would send packets to the echo server.
    // Thefore, we need to use random numbers to send packets in random time to bring closer network model to real life.
