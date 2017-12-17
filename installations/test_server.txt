@@ -39,7 +39,7 @@ http {
 /------------------------------------------------------------------------------------------------------------------------------/
 
 
-Agora desloque-se para o diretorio "/etc/nginx/sites-enabled" e crie um arquivo com o nome "10.0.0.1" com o comando 
+Agora desloque-se para o diretorio "/etc/nginx/sites-enabled" e crie um arquivo com o nome "10.0.1.1" com o comando 
 "vi 10.0.1.1" e copie o seguinte código:
 
 /------------------------------------------------------------------------------------------------------------------------------/
