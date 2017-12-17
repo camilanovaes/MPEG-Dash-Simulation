@@ -49,9 +49,6 @@ using namespace ns3;
 NS_LOG_COMPONENT_DEFINE ("mpeg-dash-final-network");
  
 int main (int argc, char *argv[]) {
-   CommandLine cmd;
-   cmd.Parse (argc, argv);
-
    // We are interacting with the outside, real, world.  This means we have to 
    // interact in real-time and therefore means we have to use the real-time
    // simulator and take the time to calculate checksums.
@@ -59,6 +56,7 @@ int main (int argc, char *argv[]) {
    GlobalValue::Bind ("ChecksumEnabled", BooleanValue (true));
    
    //===== CSMA CONFIG =====
+   uint32_t nNodes = 5;
    NodeContainer csmaNodes;
    csmaNodes.Create (5);
    
@@ -68,12 +66,12 @@ int main (int argc, char *argv[]) {
 
    NetDeviceContainer csmaDevices = csma.Install (csmaNodes);
 
-   InternetStackHelper csmaInternet;
-   csmaInternet.Install (csmaNodes);
+   InternetStackHelper stack;
+   stack.Install (csmaNodes);
 
-   Ipv4AddressHelper csmaIpv4;
-   csmaIpv4.SetBase ("10.0.3.0", "255.255.255.0");
-   Ipv4InterfaceContainer csmaInterfaces = csmaIpv4.Assign (csmaDevices);
+   Ipv4AddressHelper address;
+   address.SetBase ("10.0.3.0", "255.255.255.0");
+   Ipv4InterfaceContainer csmaInterfaces = address.Assign (csmaDevices);
    //=======================
       
    NodeContainer virtualNodes;
@@ -86,13 +84,11 @@ int main (int argc, char *argv[]) {
 
    NodeContainer p2pNodes = NodeContainer (csmaNodes.Get(4), virtualNodes.Get(0));
    NetDeviceContainer p2pDevices = p2p.Install (p2pNodes);
-
-   InternetStackHelper stack;    
+    
    stack.Install (virtualNodes);
  
-   Ipv4AddressHelper ipv4;
-   ipv4.SetBase ("10.0.2.0", "255.255.255.192");
-   Ipv4InterfaceContainer interfaces = ipv4.Assign (p2pDevices);
+   address.SetBase ("10.0.2.0", "255.255.255.0");
+   Ipv4InterfaceContainer p2pInterfaces = address.Assign (p2pDevices);
    //=======================
 
    //===== WIFI CONFIG =====
@@ -116,6 +112,9 @@ int main (int argc, char *argv[]) {
    mobility.SetPositionAllocator (positionAlloc);
    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
    mobility.Install (virtualNodes);
+
+   address.SetBase ("10.0.1.0", "255.255.255.0");
+   Ipv4InterfaceContainer wifiInterfaces = address.Assign (wifiDevices);
    //============================
 
    // ====== BRIDGE CONFIG =============
@@ -129,33 +128,50 @@ int main (int argc, char *argv[]) {
    //===================================
 
    //=== APLICATION FOR CSMA NODES =====
-   //UdpEchoServerHelper echoServer (9);   //creating the echo server on port 9
-   //ApplicationContainer serverApps = echoServer.Install (virtualNodes.Get(0));  //install server application on the node 1
-   //serverApps.Start (Seconds (1.0));
-   //serverApps.Stop (Seconds (600.0));
+   Ipv4Address Server_Address(wifiInterfaces.GetAddress(0));
+   uint16_t Server_port = 4500;
+
+   UdpEchoServerHelper echoServer (Server_port);   //creating the echo server on port 9
+   ApplicationContainer serverApps = echoServer.Install (virtualNodes.Get(0));  //install server application on the node 1
+   serverApps.Start (Seconds (1.0));
+   serverApps.Stop (Seconds (600.0));
 
    //We are going to create echo client applications, which would send packets to the echo server.
    // Thefore, we need to use random numbers to send packets in random time to bring closer network model to real life.
-   //RngSeedManager::SetSeed (3);  // Changes seed from default of 1 to 3
-   //RngSeedManager::SetRun (7);   // Changes run numberfrom default of 1 to 7
-   //Ptr<UniformRandomVariable> rand = CreateObject<UniformRandomVariable>();
-   //rand->SetAttribute ("Min", DoubleValue(10));
-   //rand->SetAttribute ("Max", DoubleValue(100));
+   RngSeedManager::SetSeed (3);  // Changes seed from default of 1 to 3
+   RngSeedManager::SetRun (7);   // Changes run numberfrom default of 1 to 7
+   Ptr<UniformRandomVariable> rand = CreateObject<UniformRandomVariable>();
+   rand->SetAttribute ("Min", DoubleValue(10));
+   rand->SetAttribute ("Max", DoubleValue(100));
 
-   //UdpEchoClientHelper echoClient (interfaces.GetAddress (1), 9); //Echo client application will send packets to node 1 port 9
-   //ApplicationContainer clientApps;
-   //for (uint32_t i = 0; i < csmaNodes; i++) {
-   //  echoClient.SetAttribute ("MaxPackets", UintegerValue (50000));
-   //  echoClient.SetAttribute ("Interval", TimeValue (MilliSeconds (rand->GetInteger()))); //random interval
-   // echoClient.SetAttribute ("PacketSize", UintegerValue(1024));
-   //  clientApps = (echoClient.Install (csmaNodes.Get(i)));
-   //  clientApps.Start (Seconds (2.0));
-   //  clientApps.Stop (Seconds (600.0));    
+   UdpEchoClientHelper echoClient (Server_Address, Server_port); //Echo client application will send packets to node 1 port 4500
+   ApplicationContainer clientApps;
+   for (uint32_t i = 0; i < nNodes; i++) {
+     echoClient.SetAttribute ("MaxPackets", UintegerValue (50000));
+     echoClient.SetAttribute ("Interval", TimeValue (MilliSeconds (rand->GetInteger()))); //random interval
+     echoClient.SetAttribute ("PacketSize", UintegerValue(1024));
+     clientApps = (echoClient.Install (csmaNodes.Get(i)));
+   }
+   //clientApps = (echoClient.Install (virtualNodes.Get(1)));
+   clientApps.Start (Seconds (2.0));
+   clientApps.Stop (Seconds (600.0));    
    //===================================
 
+   Ipv4GlobalRoutingHelper::PopulateRoutingTables();
+
+   Time::SetResolution (Time::NS);
+   LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
+   LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
+
+   //Analise do trafego na rede 
+   AsciiTraceHelper ascii;
+   csma.EnableAsciiAll (ascii.CreateFileStream ("csma-dash.tr"));
+   csma.EnablePcapAll ("csma-dash");
+   wifiPhy.EnableAsciiAll (ascii.CreateFileStream ("wifi-dash.tr"));
+   wifiPhy.EnablePcapAll ("wifi-dash");
+
    // Run the simulation for ten minutes to give the user time to play around
-   Simulator::Stop (Seconds (600.));
+   Simulator::Stop (Seconds (600.0));
    Simulator::Run ();
    Simulator::Destroy ();
 }
-
