@@ -1,7 +1,4 @@
 <MPD type="OnDemand" xmlns="urn:3GPP:ns:PSS:AdaptiveHTTPStreamingMPD:2009">
- <ProgramInformation moreInformationURL="http://gpac.sourceforge.net">
-  <Title>Media Presentation Description for file /local/users/stledere/TestContent/bunny_4s/bunny_4s_100kbit/bunny_100kbit.mp4 generated with GPAC </Title>
- </ProgramInformation>
  <Period start="PT0S" duration="PT0H9M56.46S">
   <Representation mimeType="video/mp4" width="320" height="240" startWithRAP="true" bandwidth="88783" minBufferTime="4000">
    <SegmentInfo duration="PT4.00S">
