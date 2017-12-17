@@ -134,7 +134,7 @@ int main (int argc, char *argv[]) {
    UdpEchoServerHelper echoServer (Server_port);   //creating the echo server on port 9
    ApplicationContainer serverApps = echoServer.Install (virtualNodes.Get(0));  //install server application on the node 1
    serverApps.Start (Seconds (1.0));
-   serverApps.Stop (Seconds (600.0));
+   serverApps.Stop (Seconds (900.0));
 
    //We are going to create echo client applications, which would send packets to the echo server.
    // Thefore, we need to use random numbers to send packets in random time to bring closer network model to real life.
@@ -152,9 +152,8 @@ int main (int argc, char *argv[]) {
      echoClient.SetAttribute ("PacketSize", UintegerValue(1024));
      clientApps = (echoClient.Install (csmaNodes.Get(i)));
    }
-   //clientApps = (echoClient.Install (virtualNodes.Get(1)));
    clientApps.Start (Seconds (2.0));
-   clientApps.Stop (Seconds (600.0));    
+   clientApps.Stop (Seconds (900.0));    
    //===================================
 
    Ipv4GlobalRoutingHelper::PopulateRoutingTables();
@@ -171,7 +170,7 @@ int main (int argc, char *argv[]) {
    wifiPhy.EnablePcapAll ("wifi-dash");
 
    // Run the simulation for ten minutes to give the user time to play around
-   Simulator::Stop (Seconds (600.0));
+   Simulator::Stop (Seconds (900.0));
    Simulator::Run ();
    Simulator::Destroy ();
 }
