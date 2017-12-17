@@ -22,7 +22,7 @@ http {
 
     server {
         listen       80;
-        server_name  10.0.0.1;
+        server_name  10.0.1.1;
 
         location / {
             root   /home/ubuntu/www;
@@ -40,13 +40,13 @@ http {
 
 
 Agora desloque-se para o diretorio "/etc/nginx/sites-enabled" e crie um arquivo com o nome "10.0.0.1" com o comando 
-"vi 10.0.0.1" e copie o seguinte código:
+"vi 10.0.1.1" e copie o seguinte código:
 
 /------------------------------------------------------------------------------------------------------------------------------/
 
 server {
         listen       80;
-        server_name  10.0.0.1;
+        server_name  10.0.1.1;
 
         location / {
             root   /home/ubuntu/www;
