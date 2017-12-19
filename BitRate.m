@@ -1,7 +1,7 @@
-cd \Users\GustavoMV\Documents\ScootPlayer\FreePass\1513553208
+cd /Users/GustavoMV/Documents/ScootPlayer/FreePass/1513542893
 M = load('event-tratado.txt');
 x = M(:,1); y = M(:,2);
-cd \Users\GustavoMV\Documents\ScootPlayer\FreePass\1513558962
+cd /Users/GustavoMV/Documents/ScootPlayer/FreePass/1513558962
 M = load('event-tratado.txt');
 X = M(:,1); Y = M(:,2);
 subplot(2,1,1);
@@ -12,10 +12,10 @@ ylabel('Data Received (bytes)','FontSize',12);
 title('Without Application');
 legend('Simulation01','Simulation02','Location','NorthEastOutside');
 
-cd \Users\GustavoMV\Documents\ScootPlayer\MpegDash\1513587749
+cd /Users/GustavoMV/Documents/ScootPlayer/MpegDash/1513587749
 M = load('event-tratado.txt');
 x_ = M(:,1); y_ = M(:,2);
-cd \Users\GustavoMV\Documents\ScootPlayer\MpegDash\1513593156
+cd /Users/GustavoMV/Documents/ScootPlayer/MpegDash/1513593156
 M = load('event-tratado.txt');
 X_ = M(:,1); Y_ = M(:,2);
 subplot(2,1,2);
