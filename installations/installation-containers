@@ -8,7 +8,7 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 - Install:
 	sudo apt install libyaml-cpp-dev lxc lxc-dev cmake gcc
 - Create VMs: 
-	cd ns-allinone-3.26/ns-3.26
+	cd PATH/TO/NS3/FOLDER
 	sudo lxc-create -n left -t ubuntu -f src/tap-bridge/examples/lxc-left.conf
 	sudo lxc-create -n right -t ubuntu -f src/tap-bridge/example/lxc-right.conf
 
@@ -102,11 +102,6 @@ https://github.com/buzz66boy/ns3-lxc/wiki/Install-&-Run-ns3-lxc
 
 - Install also
 	npm install grunt-contrib-connect grunt-contrib-watch grunt-contrib-jshint grunt-contrib-uglify
-
-- And now download and unzip Dash player:
-	wget https://github.com/Dash-Industry-Forum/dash.js/archive/development.zip
-	apt-get install unzip
-	unzip development.zip
 	
 - Install Net Tools
 	apt-get install net-tools
