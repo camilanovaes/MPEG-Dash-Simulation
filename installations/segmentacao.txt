@@ -1,0 +1,21 @@
+##### VIDEO #####
+$ ffmpeg -i VIDEO.mp4 -an -c:v libx264 -x264opts 'keyint=60:min-keyint=60:no-scenecut' -b:v 5300k -maxrate 5300k -bufsize 2650k -vf 'scale=-1:1080' VIDEO-1080P.mp4
+
+$ ffmpeg -i VIDEO.mp4 -an -c:v libx264 -x264opts 'keyint=60:min-keyint=60:no-scenecut' -b:v 2400k -maxrate 2400k -bufsize 1200k -vf 'scale=-1:720' VIDEO-720P.mp4
+
+$ ffmpeg -i VIDEO.mp4 -an -c:v libx264 -x264opts 'keyint=60:min-keyint=60:no-scenecut' -b:v 1060k -maxrate 1060k -bufsize 530k -vf 'scale=-1:478' VIDEO-480P.mp4
+
+$ ffmpeg -i VIDEO.mp4 -an -c:v libx264 -x264opts 'keyint=60:min-keyint=60:no-scenecut' -b:v 600k -maxrate 600k -bufsize 300k -vf 'scale=-1:360' VIDEO-360P.mp4
+
+$ ffmpeg -i VIDEO.mp4 -an -c:v libx264 -x264opts 'keyint=60:min-keyint=60:no-scenecut' -b:v 260k -maxrate 260k -bufsize 130k -vf 'scale=-1:242' VIDEO-240P.mp4
+
+##### AUDIO #####
+$ ffmpeg -i VIDEO.mp4 -c:a aac -ac 2 -ab 128k -vn VIDEO-AUDIO_128K.mp4
+
+$ ffmpeg -i VIDEO.mp4 -c:a aac -ac 2 -ab 192k -vn VIDEO-AUDIO_192K.mp4
+
+$ ffmpeg -i VIDEO.mp4 -c:a aac -ac 2 -ab 64k -vn VIDEO-AUDIO_64K.mp4
+
+##### SEGMENTACAO #####
+$ MP4Box -dash 1000 -rap -frag-rap -segment-name sample_%s -url-template VIDEO-1080P.mp4 VIDEO-720P.mp4 VIDEO-480P.mp4 VIDEO-360P.mp4 VIDEO-240P.mp4 VIDEO-AUDIO_128K.mp4 VIDEO-AUDIO_192K.mp4 VIDEO-AUDIO_64K.mp4
+
