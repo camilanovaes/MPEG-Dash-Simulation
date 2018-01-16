@@ -17,5 +17,5 @@ $ ffmpeg -i VIDEO.mp4 -c:a aac -ac 2 -ab 192k -vn VIDEO-AUDIO_192K.mp4
 $ ffmpeg -i VIDEO.mp4 -c:a aac -ac 2 -ab 64k -vn VIDEO-AUDIO_64K.mp4
 
 ##### SEGMENTACAO #####
-$ MP4Box -dash 1000 -rap -frag-rap -segment-name sample_%s -url-template VIDEO-1080P.mp4 VIDEO-720P.mp4 VIDEO-480P.mp4 VIDEO-360P.mp4 VIDEO-240P.mp4 VIDEO-AUDIO_128K.mp4 VIDEO-AUDIO_192K.mp4 VIDEO-AUDIO_64K.mp4
+$ MP4Box -dash 1000 -rap -frag-rap -segment-name sample_%s -url-template -out VIDEO.mpd VIDEO-1080P.mp4 VIDEO-720P.mp4 VIDEO-480P.mp4 VIDEO-360P.mp4 VIDEO-240P.mp4 VIDEO-AUDIO_128K.mp4 VIDEO-AUDIO_192K.mp4 VIDEO-AUDIO_64K.mp4
 
